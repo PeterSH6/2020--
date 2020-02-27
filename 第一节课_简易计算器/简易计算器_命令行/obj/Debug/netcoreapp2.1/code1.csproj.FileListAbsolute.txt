@@ -1,0 +1,10 @@
+/Users/shengguangming/Desktop/软件构造基础/code1/obj/Debug/netcoreapp2.1/code1.csprojAssemblyReference.cache
+/Users/shengguangming/Desktop/软件构造基础/code1/obj/Debug/netcoreapp2.1/code1.AssemblyInfoInputs.cache
+/Users/shengguangming/Desktop/软件构造基础/code1/obj/Debug/netcoreapp2.1/code1.AssemblyInfo.cs
+/Users/shengguangming/Desktop/软件构造基础/code1/bin/Debug/netcoreapp2.1/code1.deps.json
+/Users/shengguangming/Desktop/软件构造基础/code1/bin/Debug/netcoreapp2.1/code1.runtimeconfig.json
+/Users/shengguangming/Desktop/软件构造基础/code1/bin/Debug/netcoreapp2.1/code1.runtimeconfig.dev.json
+/Users/shengguangming/Desktop/软件构造基础/code1/bin/Debug/netcoreapp2.1/code1.dll
+/Users/shengguangming/Desktop/软件构造基础/code1/bin/Debug/netcoreapp2.1/code1.pdb
+/Users/shengguangming/Desktop/软件构造基础/code1/obj/Debug/netcoreapp2.1/code1.dll
+/Users/shengguangming/Desktop/软件构造基础/code1/obj/Debug/netcoreapp2.1/code1.pdb
