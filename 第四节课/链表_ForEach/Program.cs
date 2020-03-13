@@ -71,11 +71,11 @@ namespace GenericApplication {
       intlist.ForEach(s => Console.WriteLine(s));
       //求最大值
       int max = int.MinValue;
-      intlist.ForEach( s => {if(s>max) max = s;});
+      intlist.ForEach( s => { max = s > max ? s:max;});
       Console.WriteLine("最大值为："+max);
       //求最小值
       int min = int.MaxValue;
-      intlist.ForEach(s => {if(s<min) min = s;});
+      intlist.ForEach(s => {min = s < min ? s:min;});
       Console.WriteLine("最小值为："+min);
       //求和
       int sum = 0;
