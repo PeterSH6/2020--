@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 /*
 写一个订单管理的控制台程序，能够实现添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询）功能。
@@ -16,7 +15,7 @@ namespace OrderItems
 {
     public class OrderItem
     {
-        private int num{get;set;} //商品数量
+        internal int num{get;set;} //商品数量
         private float prize{get;set;} //商品价格
         internal float sum{get{return prize*num;}} //总价
         internal string itemID{get;set;} //商品ID
@@ -40,7 +39,7 @@ namespace OrderItems
             return itemID + " " + itemName + " " + prize.ToString() + " " 
                           + num.ToString() + " " + sum.ToString() + Environment.NewLine;
         }
-
+        //TODO: 作业的订单和订单明细类需要重写Equals方法，确保添加的订单不重复，每个订单的订单明细不重复。
         public override bool Equals(object? obj)
         {
             if(obj is OrderItem)
