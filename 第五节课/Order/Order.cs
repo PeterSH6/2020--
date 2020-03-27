@@ -94,7 +94,7 @@ namespace Orders
         }
         //public bool searchItem(string)
         //作业的订单和订单明细类需要重写Equals方法，确保添加的订单不重复，每个订单的订单明细不重复。
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             var order = obj as Order;
             return order!= null && orderID == order.orderID;

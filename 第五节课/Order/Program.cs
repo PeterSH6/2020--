@@ -21,35 +21,34 @@ namespace 第五节课
             OrderService service = new OrderService();
             Console.WriteLine("订单服务成功开启！");
             Console.WriteLine("请输入用户ID(此处简便不输入了）");
-            string customer = "123";//Console.ReadLine() ;
+            string customer = "peter";//Console.ReadLine() ;
             service.Addorder(customer);
-            try
-            {
-                service.Modiforder("1", "add", "1", 1);
-                service.Modiforder("1", "add", "2", 1);
-                service.Modiforder("1", "add", "3", 1);
-                service.Modiforder("1", "add", "4", 1);
-                service.Modiforder("1", "add", "5", 1);
-                service.Export("s.xml");
-                service.Modiforder("1", "del", "4", 1);
-                service.Modiforder("1", "mod", "1", 2);
-                service.SearchOrderID("1");
-                service.SearchOrder("123");
-                service.SearchOrder(null, "3");
-                service.Addorder("2");
-                service.Modiforder("2", "add", "aa", 5);
-                service.SearchOrderID("2");
-                service.Delorder("1");
-                service.Delorder("3");
+            try{
+            service.Modiforder("1","add","1",1);
+            service.Modiforder("1","add","2",1);
+            service.Modiforder("1","add","3",1);
+            service.Modiforder("1","add","4",1);
+            service.Modiforder("1","add","5",1);
+            service.Export("s.xml");
+            service.Modiforder("1","del","4",1);
+            service.Modiforder("1","mod","1",2);
+            service.SearchOrderID("1");
+            service.SearchOrder("123");
+            service.SearchOrder(null,"3");
+            service.Addorder("2");
+            service.Modiforder("2","add","aa",5);
+            service.SearchOrderID("2");
+            service.Delorder("1");
+            service.Delorder("3");
             }
-            catch (OrderException e)
+            catch(OrderException e)
             {
-                Console.WriteLine("出现异常：{0}", e.Message);
-                if (e.InnerException != null)
-                    Console.WriteLine("出现异常：{0}", e.InnerException.Message);
+                Console.WriteLine("出现异常：{0}",e.Message);
+                if(e.InnerException!= null)
+                    Console.WriteLine("出现异常：{0}",e.InnerException.Message);
             }
 
         }
-
+            
     }
 }

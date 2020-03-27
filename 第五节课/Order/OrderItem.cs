@@ -40,7 +40,7 @@ namespace OrderItems
                           + num.ToString() + " ,sum: " + sum.ToString() + Environment.NewLine;
         }
         //TODO: 作业的订单和订单明细类需要重写Equals方法，确保添加的订单不重复，每个订单的订单明细不重复。
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             if(obj is OrderItem)
             {

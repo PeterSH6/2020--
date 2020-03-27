@@ -28,7 +28,6 @@ namespace OrderServices
             using(FileStream fileStream = new FileStream(path,FileMode.Create))
             {
                 xmlSerializer.Serialize(fileStream,this.order);
-                Console.WriteLine("成功序列化");
             }
         }
 
@@ -38,7 +37,6 @@ namespace OrderServices
             using(FileStream fileStream = new FileStream(path,FileMode.Open))
             {
                 this.order = (List<Order>)xmlSerializer.Deserialize(fileStream);
-                Console.WriteLine("成功导入xml文件");
             }
         }
 
@@ -101,7 +99,6 @@ namespace OrderServices
         public Order SearchOrderID(string orderid)
         {
            Order temp =  order.Where(s => s.orderID == orderid).FirstOrDefault();
-            if (temp == null) throw new OrderException("无法找到该ID的订单");
            showOrder(temp);
            return temp; 
            //根据订单号查询，只有一个订单
