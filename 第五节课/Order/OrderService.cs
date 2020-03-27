@@ -99,6 +99,7 @@ namespace OrderServices
         public Order SearchOrderID(string orderid)
         {
            Order temp =  order.Where(s => s.orderID == orderid).FirstOrDefault();
+           if(temp == null) throw new OrderException("无法找到该订单");
            showOrder(temp);
            return temp; 
            //根据订单号查询，只有一个订单
