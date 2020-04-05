@@ -36,7 +36,8 @@ namespace OrderServices
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Order>));
             using(FileStream fileStream = new FileStream(path,FileMode.Open))
             {
-                this.order = (List<Order>)xmlSerializer.Deserialize(fileStream);
+                //this.order = (List<Order>)xmlSerializer.Deserialize(fileStream);
+                this.order.AddRange((List<Order>)xmlSerializer.Deserialize(fileStream));
             }
         }
 
