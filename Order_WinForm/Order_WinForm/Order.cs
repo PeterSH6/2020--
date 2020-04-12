@@ -8,15 +8,16 @@ namespace Orders
     public class Order:IComparable
     {
         public string orderID{get;set;}
-        public List<OrderItem> orderitem = new List<OrderItem>();
-        public float sumall{get{return orderitem.Sum(s=>s.sum);}}
+        private List<OrderItem> orderitem = new List<OrderItem>();
+        public List<OrderItem> orderitems { get => orderitem; set => orderitem = value; }
         public string customerID{get;set;}
+        public float sumall { get { return orderitems.Sum(s => s.sum); } }
         public DateTime now{get{return DateTime.Now;}}
 
         public Order()
         {
             orderID = "non-ID";
-            orderitem = new List<OrderItem>();
+            orderitems = new List<OrderItem>();
             customerID = "non-ID";
         }
         public Order(string oid,string cid)
@@ -29,7 +30,7 @@ namespace Orders
             orderID = oid;
             customerID = cid;
             foreach(OrderItem p in list)
-                orderitem.Add(p);
+                orderitems.Add(p);
         }
         //用于增加order商品,此处其实只用输入一个ID便可对应到某样商品的名称和价格
         //因此参数只有id和num，名字和价格为了简便只取默认值
@@ -37,16 +38,16 @@ namespace Orders
         {
             //OrderItem sth = new OrderItem(id,"sth",num,2);
             temp.num = num;
-            if(orderitem.Contains(temp))
+            if(orderitems.Contains(temp))
                 throw new OrderException($"orderItem-{temp} is existed!");
-            orderitem.Add(temp);
+            orderitems.Add(temp);
             Console.WriteLine("在订单"+orderID+"增加商品"+temp.itemID+",名称为:"+ temp.itemName+",份数:"+num+",价格:"+2);
         }
         //减少订单明细
         public void DelItem(OrderItem sth)
         {
             //OrderItem sth = SearchItemID(itemid);
-            if(orderitem.Remove(sth))
+            if(orderitems.Remove(sth))
                 Console.WriteLine("成功删除编号为"+sth.itemID+"的商品");
             else throw new OrderItemException("编号为"+sth.itemID+"的商品不存在");
         }
@@ -54,7 +55,7 @@ namespace Orders
         internal void ModifItem(OrderItem p,int modify)
         {
             //OrderItem p = SearchItemID(itemid);//此处不成功可抛出异常
-            if(!orderitem.Contains(p))
+            if(!orderitems.Contains(p))
                 throw new OrderItemException("编号为"+p.itemID+"的商品"+p.itemName+"不存在");
             p.num = modify;
             Console.WriteLine("修改订单"+orderID+"中的商品"+p.itemID+",份数为"+modify);
@@ -62,7 +63,7 @@ namespace Orders
         //在订单中通过商品号搜索特定的订单明细
         internal OrderItem SearchItemID(string itemid)
         {
-           OrderItem temp =  orderitem.Where(s => s.itemID == itemid).FirstOrDefault();
+           OrderItem temp =  orderitems.Where(s => s.itemID == itemid).FirstOrDefault();
            if(temp == null) throw new OrderItemException("编号为"+itemid+"的商品不存在");
            else
            {
@@ -73,7 +74,7 @@ namespace Orders
 
         internal bool InOrder(string itemid)
         {
-            var iter = from n in orderitem where n.itemID != null select n.itemID;
+            var iter = from n in orderitems where n.itemID != null select n.itemID;
             foreach(string temp in iter)
             {
                 if(temp.Equals(itemid))
@@ -86,7 +87,7 @@ namespace Orders
         public override string ToString()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            foreach(OrderItem p in orderitem)
+            foreach(OrderItem p in orderitems)
             {
                 sb.Append(p.ToString());
             }

@@ -1,5 +1,7 @@
 ﻿using System;
+using OrderItems;
 using OrderServices;
+using System.Collections;
 using Exceptions;
 /*
 写一个订单管理的控制台程序，能够实现添加订单、删除订单、修改订单、查询订单（按照订单号、商品名称、客户等字段进行查询）功能。
@@ -18,25 +20,30 @@ namespace 第五节课
     {
         static void Main(string[] args)
         {
+            OrderItem apple = new OrderItem("1", "apple",1, 8.0f);
+            OrderItem banana = new OrderItem("2", "banana",1, 10.0f);
+            OrderItem pen = new OrderItem("3", "pen",1, 3.0f);
+            OrderItem bottle = new OrderItem("4", "bottle",1, 15.0f);
+            OrderItem egg = new OrderItem("5", "egg",1, 1.0f);
             OrderService service = new OrderService();
             Console.WriteLine("订单服务成功开启！");
-            Console.WriteLine("请输入用户ID(此处简便不输入了）");
-            string customer = "peter";//Console.ReadLine() ;
-            service.Addorder(customer);
+            service.Addorder("Peter");
+            service.Addorder("Sam");
+            service.Addorder("Bob");
             try{
-            service.Modiforder("1","add","1",1);
-            service.Modiforder("1","add","2",1);
-            service.Modiforder("1","add","3",1);
-            service.Modiforder("1","add","4",1);
-            service.Modiforder("1","add","5",1);
+            service.Modiforder("1","add",apple,3);
+            service.Modiforder("1","add",banana,1);
+            service.Modiforder("1","add",pen,1);
+            service.Modiforder("1","add",bottle,1);
+            service.Modiforder("1","add",egg,1);
             service.Export("s.xml");
-            service.Modiforder("1","del","4",1);
-            service.Modiforder("1","mod","1",2);
+            service.Modiforder("1","del",apple);
+            service.Modiforder("1","mod",banana,2);
             service.SearchOrderID("1");
             service.SearchOrder("123");
             service.SearchOrder(null,"3");
             service.Addorder("2");
-            service.Modiforder("2","add","aa",5);
+            service.Modiforder("2","add",bottle,5);
             service.SearchOrderID("2");
             service.Delorder("1");
             service.Delorder("3");
