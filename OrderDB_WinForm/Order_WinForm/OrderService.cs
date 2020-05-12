@@ -35,17 +35,24 @@ namespace OrderServices
 
         public void Import(string path)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(DbSet<Order>));
-            this.orders = Query().ToList();
-            using(FileStream fileStream = new FileStream(path,FileMode.Open))
+            using (var context = new OrderContext())
             {
-                DbSet<Order> temp = (DbSet<Order>)xmlSerializer.Deserialize(fileStream);
-                temp.ForEachAsync(order1 => {
-                    if(!orders.Contains(order1))
-                        orders.Add(order1);
-                });
-                //this.orders.AddRange((List<Order>)xmlSerializer.Deserialize(fileStream));
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(DbSet<Order>));
+                //this.orders = Query().ToList();
+                using (FileStream fileStream = new FileStream(path, FileMode.Open))
+                {
+                    DbSet<Order> temp = (DbSet<Order>)xmlSerializer.Deserialize(fileStream);
+                    temp.ForEachAsync(order1 =>
+                    {
+                        if (!context.Orders.Contains(order1))
+                            context.Orders.Add(order1);
+                    });
+                    context.SaveChanges();
+                    this.orders = Query().ToList();
+                    //this.orders.AddRange((List<Order>)xmlSerializer.Deserialize(fileStream));
+                }
             }
+        
         }
 
         public int generateID()

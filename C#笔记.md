@@ -10,11 +10,9 @@
    
 4. 含有get和set的public属性会自动加入数据库
 
-5. 
+5. yield完成foreach
 
-6. yield完成foreach
-
-7. ```c#
+6. ```c#
    public delegate T FuncOnOne(T x);
      
           public IEnumerable<T> ForEach(FuncOnOne func)
