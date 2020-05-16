@@ -10,9 +10,50 @@
    
 4. 含有get和set的public属性会自动加入数据库
 
-5. yield完成foreach
+5. ###### C#HttpClient关闭ssl(https)方法，暨System.Net.Http.WinHttpException: 发生了安全错误 解决方案：
 
-6. ```c#
+```c#
+var handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = delegate { return true; };
+            
+ var client = new HttpClient(handler);
+```
+
+6. 在EF Core中，需要使用FluentAPI来确定复合主键。只能使用 Fluent API 配置复合键 - 不能使用约定来设置复合键，也不能使用数据注释来配置复合键。
+
+http://gitblogs.com/blogs/details?id=03351e11-464a-4ba7-afde-4cc69e2625a7
+
+```c#
+class MyContext : DbContext
+{
+    public DbSet<Car> Cars { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Car>()
+            .HasKey(c => new { c.State, c.LicensePlate });
+    }
+}
+
+class Car
+{
+    public string State { get; set; }
+    public string LicensePlate { get; set; }
+
+    public string Make { get; set; }
+    public string Model { get; set; }
+}
+```
+
+7. 当出现Failed to bind to address https://127.0.0.1:5001: address already in use的故障时。
+
+通过指令`lsof -i:5001`查看该端口的pid状态，发现应该为dotnet...Listened。
+
+然后通过`kill -9 <pid>`杀掉该进程即可解决问题
+
+8. yield完成foreach
+
+1. ```c#
    public delegate T FuncOnOne(T x);
      
           public IEnumerable<T> ForEach(FuncOnOne func)
