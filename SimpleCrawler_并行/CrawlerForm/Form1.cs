@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CrawlerForm;
 
 namespace CrawlerForm {
   public partial class Form1 : Form {
@@ -33,7 +34,7 @@ namespace CrawlerForm {
     }
 
     private void Crawler_PageDownloaded(Crawler crawler, string url, string info) {
-      var pageInfo = new { Index = resultBindingSource.Count + 1, URL = url, Status = info };
+      var pageInfo = new { Index = resultBindingSource.Count, URL = url, Status = info };
       Action action = () => { resultBindingSource.Add(pageInfo); };
       if (this.InvokeRequired) {
         this.Invoke(action);

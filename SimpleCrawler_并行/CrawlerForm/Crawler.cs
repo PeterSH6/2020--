@@ -38,7 +38,7 @@ namespace CrawlerForm {
     public int filecount = 0;//防止多个进程调用同一个文件
     public bool flag = false;
     public Crawler() {
-      MaxPage = 100;
+      MaxPage = 30;
       HtmlEncoding = Encoding.UTF8;
     }
 
